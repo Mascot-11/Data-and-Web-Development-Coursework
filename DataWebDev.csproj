@@ -67,6 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Complex Web Forms\Users Project.aspx" />
+    <Content Include="Complex Web Forms\Top Performer.aspx" />
+    <Content Include="Complex Web Forms\Project Milestone.aspx" />
+    <Content Include="Home Page.aspx" />
     <Content Include="Simple Web Forms\Milestone.aspx" />
     <Content Include="Simple Web Forms\Project.aspx" />
     <Content Include="Simple Web Forms\SubTask.aspx" />
@@ -75,6 +79,34 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complex Web Forms\Users Project.aspx.cs">
+      <DependentUpon>Users Project.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Complex Web Forms\Users Project.aspx.designer.cs">
+      <DependentUpon>Users Project.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Complex Web Forms\Top Performer.aspx.cs">
+      <DependentUpon>Top Performer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Complex Web Forms\Top Performer.aspx.designer.cs">
+      <DependentUpon>Top Performer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Complex Web Forms\Project Milestone.aspx.cs">
+      <DependentUpon>Project Milestone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Complex Web Forms\Project Milestone.aspx.designer.cs">
+      <DependentUpon>Project Milestone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home Page.aspx.cs">
+      <DependentUpon>Home Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home Page.aspx.designer.cs">
+      <DependentUpon>Home Page.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simple Web Forms\Milestone.aspx.cs">
       <DependentUpon>Milestone.aspx</DependentUpon>
