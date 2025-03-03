@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
@@ -45,23 +45,8 @@
                     <asp:Parameter Name="MILESTONEID" Type="Decimal" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-            <asp:FormView ID="FormView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical">
-                <EditItemTemplate>
-                    MILESTONEID:
-                    <asp:Label ID="MILESTONEIDLabel1" runat="server" Text='<%# Eval("MILESTONEID") %>' />
-                    <br />
-                    MILESTONENAME:
-                    <asp:TextBox ID="MILESTONENAMETextBox" runat="server" Text='<%# Bind("MILESTONENAME") %>' />
-                    <br />
-                    MILESTONEDUEDATE:
-                    <asp:TextBox ID="MILESTONEDUEDATETextBox" runat="server" Text='<%# Bind("MILESTONEDUEDATE") %>' />
-                    <br />
-                    PROJECTS_PROJECTID:
-                    <asp:TextBox ID="PROJECTS_PROJECTIDTextBox" runat="server" Text='<%# Bind("PROJECTS_PROJECTID") %>' />
-                    <br />
-                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                </EditItemTemplate>
+            <asp:FormView ID="FormView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="FormView1_PageIndexChanging">
+                
                 <EditRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
                 <FooterStyle BackColor="#CCCC99" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -76,31 +61,19 @@
                     <asp:TextBox ID="MILESTONEDUEDATETextBox" runat="server" Text='<%# Bind("MILESTONEDUEDATE") %>' />
                     <br />
                     PROJECTS_PROJECTID:
-                    <asp:TextBox ID="PROJECTS_PROJECTIDTextBox" runat="server" Text='<%# Bind("PROJECTS_PROJECTID") %>' />
+                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="PROJECTNAME" DataValueField="PROJECTID" SelectedValue='<%# Bind("PROJECTS_PROJECTID") %>'>
+                    </asp:DropDownList>
                     <br />
                     <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                    &nbsp;
                 </InsertItemTemplate>
                 <ItemTemplate>
-                    MILESTONEID:
-                    <asp:Label ID="MILESTONEIDLabel" runat="server" Text='<%# Eval("MILESTONEID") %>' />
-                    <br />
-                    MILESTONENAME:
-                    <asp:Label ID="MILESTONENAMELabel" runat="server" Text='<%# Bind("MILESTONENAME") %>' />
-                    <br />
-                    MILESTONEDUEDATE:
-                    <asp:Label ID="MILESTONEDUEDATELabel" runat="server" Text='<%# Bind("MILESTONEDUEDATE") %>' />
-                    <br />
-                    PROJECTS_PROJECTID:
-                    <asp:Label ID="PROJECTS_PROJECTIDLabel" runat="server" Text='<%# Bind("PROJECTS_PROJECTID") %>' />
-                    <br />
-                    <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                    &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                    &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>
                 <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
                 <RowStyle BackColor="#F7F7DE" />
             </asp:FormView>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECTID&quot;, &quot;PROJECTNAME&quot; FROM &quot;PROJECT&quot;"></asp:SqlDataSource>
         </div>
     </form>
 </body>

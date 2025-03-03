@@ -13,5 +13,15 @@ namespace DataWebDev.Simple_Web_Forms
         {
 
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void FormView1_PageIndexChanging(object sender, FormViewPageEventArgs e)
+        {
+
+        }
     }
 }

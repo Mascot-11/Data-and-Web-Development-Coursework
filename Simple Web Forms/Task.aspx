@@ -49,25 +49,7 @@
                 <SortedDescendingHeaderStyle BackColor="#575357" />
             </asp:GridView>
             <asp:FormView ID="FormView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="TASKID" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical">
-                <EditItemTemplate>
-                    TASKID:
-                    <asp:Label ID="TASKIDLabel1" runat="server" Text='<%# Eval("TASKID") %>' />
-                    <br />
-                    TASKNAME:
-                    <asp:TextBox ID="TASKNAMETextBox" runat="server" Text='<%# Bind("TASKNAME") %>' />
-                    <br />
-                    TASKSTARTDATE:
-                    <asp:TextBox ID="TASKSTARTDATETextBox" runat="server" Text='<%# Bind("TASKSTARTDATE") %>' />
-                    <br />
-                    TASKSTATUS:
-                    <asp:TextBox ID="TASKSTATUSTextBox" runat="server" Text='<%# Bind("TASKSTATUS") %>' />
-                    <br />
-                    TASKDUEDATE:
-                    <asp:TextBox ID="TASKDUEDATETextBox" runat="server" Text='<%# Bind("TASKDUEDATE") %>' />
-                    <br />
-                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                </EditItemTemplate>
+               
                 <EditRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
                 <FooterStyle BackColor="#CCCC99" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -91,24 +73,7 @@
                     &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                 </InsertItemTemplate>
                 <ItemTemplate>
-                    TASKID:
-                    <asp:Label ID="TASKIDLabel" runat="server" Text='<%# Eval("TASKID") %>' />
-                    <br />
-                    TASKNAME:
-                    <asp:Label ID="TASKNAMELabel" runat="server" Text='<%# Bind("TASKNAME") %>' />
-                    <br />
-                    TASKSTARTDATE:
-                    <asp:Label ID="TASKSTARTDATELabel" runat="server" Text='<%# Bind("TASKSTARTDATE") %>' />
-                    <br />
-                    TASKSTATUS:
-                    <asp:Label ID="TASKSTATUSLabel" runat="server" Text='<%# Bind("TASKSTATUS") %>' />
-                    <br />
-                    TASKDUEDATE:
-                    <asp:Label ID="TASKDUEDATELabel" runat="server" Text='<%# Bind("TASKDUEDATE") %>' />
-                    <br />
-                    <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                    &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                    &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                   <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>
                 <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
                 <RowStyle BackColor="#F7F7DE" />

@@ -32,11 +32,19 @@
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                    <asp:BoundField DataField="SUBTASKID" HeaderText="SUBTASKID" ReadOnly="True" SortExpression="SUBTASKID" />
-                    <asp:BoundField DataField="SUBTASKSTATUS" HeaderText="SUBTASKSTATUS" SortExpression="SUBTASKSTATUS" />
-                    <asp:BoundField DataField="SUBTASKNAME" HeaderText="SUBTASKNAME" SortExpression="SUBTASKNAME" />
-                    <asp:BoundField DataField="TASKS_TASKID" HeaderText="TASKS_TASKID" SortExpression="TASKS_TASKID" />
-                    <asp:BoundField DataField="USERS_USERID" HeaderText="USERS_USERID" SortExpression="USERS_USERID" />
+                    <asp:BoundField DataField="SUBTASKID" HeaderText="SUBTASK ID" ReadOnly="True" SortExpression="SUBTASKID" />
+                    <asp:BoundField DataField="SUBTASKSTATUS" HeaderText="SUBTASK STATUS" SortExpression="SUBTASKSTATUS" />
+                    <asp:BoundField DataField="SUBTASKNAME" HeaderText="SUBTASK NAME" SortExpression="SUBTASKNAME" />
+                    <asp:BoundField DataField="TASKS_TASKID" HeaderText="TASK ID" SortExpression="TASKS_TASKID" />
+                    <asp:BoundField DataField="USERS_USERID" HeaderText="USER ID" SortExpression="USERS_USERID" />
+                    <asp:TemplateField HeaderText="Task  &amp; User Name">
+                        <ItemTemplate>
+                            <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource2" DataTextField="TASKNAME" Enabled="false" DataValueField="TASKID" SelectedValue='<%# Bind("TASKS_TASKID") %>'>
+                            </asp:DropDownList>
+                            <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource3" DataTextField="USERNAME" Enabled="false" DataValueField="USERID" SelectedValue='<%# Bind("USERS_USERID") %>'>
+                            </asp:DropDownList>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
                 <FooterStyle BackColor="#CCCC99" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -49,70 +57,39 @@
                 <SortedDescendingHeaderStyle BackColor="#575357" />
             </asp:GridView>
             <asp:FormView ID="FormView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="SUBTASKID" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical">
-                <EditItemTemplate>
-                    SUBTASKID:
-                    <asp:Label ID="SUBTASKIDLabel1" runat="server" Text='<%# Eval("SUBTASKID") %>' />
-                    <br />
-                    SUBTASKSTATUS:
-                    <asp:TextBox ID="SUBTASKSTATUSTextBox" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>' />
-                    <br />
-                    SUBTASKNAME:
-                    <asp:TextBox ID="SUBTASKNAMETextBox" runat="server" Text='<%# Bind("SUBTASKNAME") %>' />
-                    <br />
-                    TASKS_TASKID:
-                    <asp:TextBox ID="TASKS_TASKIDTextBox" runat="server" Text='<%# Bind("TASKS_TASKID") %>' />
-                    <br />
-                    USERS_USERID:
-                    <asp:TextBox ID="USERS_USERIDTextBox" runat="server" Text='<%# Bind("USERS_USERID") %>' />
-                    <br />
-                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                </EditItemTemplate>
+                
                 <EditRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
                 <FooterStyle BackColor="#CCCC99" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
                 <InsertItemTemplate>
-                    SUBTASKID:
+                    SUBTASK ID:
                     <asp:TextBox ID="SUBTASKIDTextBox" runat="server" Text='<%# Bind("SUBTASKID") %>' />
                     <br />
-                    SUBTASKSTATUS:
+                    SUBTASK STATUS:
                     <asp:TextBox ID="SUBTASKSTATUSTextBox" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>' />
                     <br />
-                    SUBTASKNAME:
+                    SUBTASK NAME:
                     <asp:TextBox ID="SUBTASKNAMETextBox" runat="server" Text='<%# Bind("SUBTASKNAME") %>' />
                     <br />
-                    TASKS_TASKID:
-                    <asp:TextBox ID="TASKS_TASKIDTextBox" runat="server" Text='<%# Bind("TASKS_TASKID") %>' />
+                    TASKID:
+                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="TASKNAME" DataValueField="TASKID" SelectedValue='<%# Bind("TASKS_TASKID") %>'>
+                    </asp:DropDownList>
                     <br />
-                    USERS_USERID:
-                    <asp:TextBox ID="USERS_USERIDTextBox" runat="server" Text='<%# Bind("USERS_USERID") %>' />
+                    USERID:
+                    <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="USERNAME" DataValueField="USERID" SelectedValue='<%# Bind("USERS_USERID") %>'>
+                    </asp:DropDownList>
                     <br />
                     <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
                     &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                 </InsertItemTemplate>
                 <ItemTemplate>
-                    SUBTASKID:
-                    <asp:Label ID="SUBTASKIDLabel" runat="server" Text='<%# Eval("SUBTASKID") %>' />
-                    <br />
-                    SUBTASKSTATUS:
-                    <asp:Label ID="SUBTASKSTATUSLabel" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>' />
-                    <br />
-                    SUBTASKNAME:
-                    <asp:Label ID="SUBTASKNAMELabel" runat="server" Text='<%# Bind("SUBTASKNAME") %>' />
-                    <br />
-                    TASKS_TASKID:
-                    <asp:Label ID="TASKS_TASKIDLabel" runat="server" Text='<%# Bind("TASKS_TASKID") %>' />
-                    <br />
-                    USERS_USERID:
-                    <asp:Label ID="USERS_USERIDLabel" runat="server" Text='<%# Bind("USERS_USERID") %>' />
-                    <br />
-                    <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                    &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                    &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                 <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Insert" />
                 </ItemTemplate>
                 <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
                 <RowStyle BackColor="#F7F7DE" />
             </asp:FormView>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;TASKID&quot;, &quot;TASKNAME&quot; FROM &quot;TASKS&quot;"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;USERID&quot;, &quot;USERNAME&quot; FROM &quot;USERS&quot;"></asp:SqlDataSource>
         </div>
     </form>
 </body>
