@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Complex Web Forms\Users Project.aspx" />
+    <Content Include="Complex Web Forms\User Project.aspx" />
     <Content Include="Complex Web Forms\Top Performer.aspx" />
     <Content Include="Complex Web Forms\Project Milestone.aspx" />
     <Content Include="Home Page.aspx" />
@@ -79,12 +79,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Complex Web Forms\Users Project.aspx.cs">
-      <DependentUpon>Users Project.aspx</DependentUpon>
+    <Compile Include="Complex Web Forms\User Project.aspx.cs">
+      <DependentUpon>User Project.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Complex Web Forms\Users Project.aspx.designer.cs">
-      <DependentUpon>Users Project.aspx</DependentUpon>
+    <Compile Include="Complex Web Forms\User Project.aspx.designer.cs">
+      <DependentUpon>User Project.aspx</DependentUpon>
     </Compile>
     <Compile Include="Complex Web Forms\Top Performer.aspx.cs">
       <DependentUpon>Top Performer.aspx</DependentUpon>

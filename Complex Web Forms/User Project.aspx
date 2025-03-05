@@ -1,4 +1,4 @@
-﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Top Performer.aspx.cs" Inherits="DataWebDev.Complex_Web_Forms.Top_Performer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User Project.aspx.cs" Inherits="DataWebDev.Complex_Web_Forms.Project_Milestone" %>
 
 
 
@@ -6,7 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Top Performers</title>
+    <title>User Project Management</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -38,13 +38,12 @@
                             Forms
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li><a class="dropdown-item" href="Milestone.aspx">Milestone Form</a></li>
-    <li><a class="dropdown-item" href="Project.aspx">Project Form</a></li>
-    <li><a class="dropdown-item" href="SubTask.aspx">SubTask Form</a></li>
-    <li><a class="dropdown-item" href="Task.aspx">Task Form</a></li>
-    <li><a class="dropdown-item" href="Users.aspx">Users Form</a></li>
-    
-</ul>
+                            <li><a class="dropdown-item" href="Milestone.aspx">Milestone Form</a></li>
+                            <li><a class="dropdown-item" href="Project.aspx">Project Form</a></li>
+                            <li><a class="dropdown-item" href="SubTask.aspx">SubTask Form</a></li>
+                            <li><a class="dropdown-item" href="Task.aspx">Task Form</a></li>
+                            <li><a class="dropdown-item" href="Users.aspx">Users Form</a></li>
+                            
                     </li>
                 </ul>
             </div>
@@ -57,16 +56,16 @@
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
                     ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-                    SelectCommand="SELECT &quot;PROJECTID&quot;, &quot;PROJECTNAME&quot; FROM &quot;PROJECT&quot;">
+                    SelectCommand="SELECT &quot;USERID&quot;, &quot;USERNAME&quot; FROM &quot;USERS&quot;">
                 </asp:SqlDataSource>
 
                 <div class="mb-3">
-                    <label class="form-label">Select Project</label>
+                    <label class="form-label">Select User</label>
                     <asp:DropDownList ID="DropDownList1" runat="server" 
                         AutoPostBack="True" 
                         DataSourceID="SqlDataSource2" 
-                        DataTextField="PROJECTNAME" 
-                        DataValueField="PROJECTID" 
+                        DataTextField="USERNAME" 
+                        DataValueField="USERID" 
                         CssClass="form-select">
                     </asp:DropDownList>
                 </div>
@@ -74,31 +73,34 @@
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
                     ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-                    SelectCommand="SELECT u.UserID, u.UserName, COUNT(t.TaskID) AS CompletedTasks
-FROM Users u
-JOIN SubTask st ON u.UserID = st.Users_UserID
-JOIN Tasks t ON st.Tasks_TaskID = t.TaskID
-JOIN UserProjetTask upt ON t.TaskID = upt.Tasks_TaskID
-JOIN UserProject up ON upt.UserProject_UserProjectID = up.UserProjectID
-JOIN Project p ON up.Projects_ProjectID = p.ProjectID
-WHERE t.TaskStatus = 'Completed'
-AND p.ProjectID = :project_id
-GROUP BY u.UserID, u.UserName
-ORDER BY CompletedTasks DESC">
+                    SelectCommand="SELECT 
+                        U.UserID, U.UserName, U.Email, U.UserRole, U.UserContact,
+                        P.ProjectID, P.ProjectName, P.ProjectStartDate, P.ProjectEndDate, P.ProjectStatus
+                    FROM Users U
+                    JOIN UserProject UP ON U.UserID = UP.Users_UserID
+                    JOIN Project P ON UP.Projects_ProjectID = P.ProjectID 
+                    WHERE U.UserID = :UserID">
                     <SelectParameters>
-                        <asp:ControlParameter ControlID="DropDownList1" Name="project_id" PropertyName="SelectedValue" />
+                        <asp:ControlParameter ControlID="DropDownList1" Name="UserID" PropertyName="SelectedValue" />
                     </SelectParameters>
                 </asp:SqlDataSource>
 
                 <asp:GridView ID="GridView1" runat="server" 
                     AutoGenerateColumns="False" 
-                    DataKeyNames="USERID" 
+                    DataKeyNames="USERID,PROJECTID" 
                     DataSourceID="SqlDataSource1" 
                     CssClass="table table-striped table-hover">
                     <Columns>
                         <asp:BoundField DataField="USERID" HeaderText="USER ID" SortExpression="USERID" />
                         <asp:BoundField DataField="USERNAME" HeaderText="USERNAME" SortExpression="USERNAME" />
-                        <asp:BoundField DataField="COMPLETEDTASKS" HeaderText="COMPLETED TASKS" SortExpression="COMPLETEDTASKS" />
+                        <asp:BoundField DataField="EMAIL" HeaderText="EMAIL" SortExpression="EMAIL" />
+                        <asp:BoundField DataField="USERROLE" HeaderText="USER ROLE" SortExpression="USERROLE" />
+                        <asp:BoundField DataField="USERCONTACT" HeaderText="USER CONTACT" SortExpression="USERCONTACT" />
+                        <asp:BoundField DataField="PROJECTID" HeaderText="PROJECT ID" SortExpression="PROJECTID" />
+                        <asp:BoundField DataField="PROJECTNAME" HeaderText="PROJECT NAME" SortExpression="PROJECTNAME" />
+                        <asp:BoundField DataField="PROJECTSTARTDATE" HeaderText="START DATE" SortExpression="PROJECTSTARTDATE" />
+                        <asp:BoundField DataField="PROJECTENDDATE" HeaderText="END DATE" SortExpression="PROJECTENDDATE" />
+                        <asp:BoundField DataField="PROJECTSTATUS" HeaderText="PROJECT STATUS" SortExpression="PROJECTSTATUS" />
                     </Columns>
                 </asp:GridView>
             </div>
