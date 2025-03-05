@@ -73,7 +73,7 @@
                     </UpdateParameters>
                 </asp:SqlDataSource>
 
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="TASKID" DataSourceID="SqlDataSource1" CssClass="table table-striped table-hover">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="TASKID" DataSourceID="SqlDataSource1" CssClass="table table-striped table-hover" AllowPaging="True">
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                         <asp:BoundField DataField="TASKID" HeaderText="TASK ID" ReadOnly="True" SortExpression="TASKID" />
