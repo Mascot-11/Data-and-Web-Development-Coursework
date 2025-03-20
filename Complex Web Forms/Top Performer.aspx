@@ -92,7 +92,7 @@ FROM (
     AND p.ProjectID = :project_id
     GROUP BY u.UserID, u.UserName, p.ProjectName, p.ProjectID
 ) RankedUsers
-WHERE Rank &lt;= 3">
+WHERE Rank <= 3">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="DropDownList1" Name="project_id" PropertyName="SelectedValue" />
                     </SelectParameters>
