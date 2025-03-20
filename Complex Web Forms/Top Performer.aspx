@@ -1,4 +1,4 @@
-﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Top Performer.aspx.cs" Inherits="DataWebDev.Complex_Web_Forms.Top_Performer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Top Performer.aspx.cs" Inherits="DataWebDev.Complex_Web_Forms.Top_Performer" %>
 
 
 
@@ -74,17 +74,25 @@
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
                     ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-                    SelectCommand="SELECT u.UserID, u.UserName, COUNT(t.TaskID) AS CompletedTasks
-FROM Users u
-JOIN SubTask st ON u.UserID = st.Users_UserID
-JOIN Tasks t ON st.Tasks_TaskID = t.TaskID
-JOIN UserProjetTask upt ON t.TaskID = upt.Tasks_TaskID
-JOIN UserProject up ON upt.UserProject_UserProjectID = up.UserProjectID
-JOIN Project p ON up.Projects_ProjectID = p.ProjectID
-WHERE t.TaskStatus = 'Completed'
-AND p.ProjectID = :project_id
-GROUP BY u.UserID, u.UserName
-ORDER BY CompletedTasks DESC">
+                    SelectCommand="SELECT UserID, UserName, ProjectName, CompletedTasks
+FROM (
+    SELECT 
+        u.UserID, 
+        u.UserName, 
+        p.ProjectName,
+        COUNT(t.TaskID) AS CompletedTasks,
+        ROW_NUMBER() OVER (PARTITION BY p.ProjectID ORDER BY COUNT(t.TaskID) DESC) AS Rank
+    FROM Users u
+    JOIN SubTask st ON u.UserID = st.Users_UserID
+    JOIN Tasks t ON st.Tasks_TaskID = t.TaskID
+    JOIN UserProjetTask upt ON t.TaskID = upt.Tasks_TaskID
+    JOIN UserProject up ON upt.UserProject_UserProjectID = up.UserProjectID
+    JOIN Project p ON up.Projects_ProjectID = p.ProjectID
+    WHERE t.TaskStatus = 'Completed'
+    AND p.ProjectID = :project_id
+    GROUP BY u.UserID, u.UserName, p.ProjectName, p.ProjectID
+) RankedUsers
+WHERE Rank &lt;= 3">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="DropDownList1" Name="project_id" PropertyName="SelectedValue" />
                     </SelectParameters>
